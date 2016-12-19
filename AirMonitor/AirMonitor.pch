@@ -1,0 +1,18 @@
+//
+//  AirMonitor.pch
+//  AirMonitor
+//
+//  Created by zengjia on 16/12/8.
+//  Copyright © 2016年 zengjia. All rights reserved.
+//
+
+#ifndef AirMonitor_pch
+#define AirMonitor_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+#import "MZMacro.h"
+#import "Masonry.h"
+#endif /* AirMonitor_pch */

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initical-scale=1.0">
+</head>
+<style type="text/css">
+    *{
+        margin:0px;
+        padding: 0px;
+
+    }
+    .conter{
+        font-family: Tahoma, Helvetica, Arial;
+    }
+    table{
+       width: 100%;
+       /*border-collapse:collapse;*/
+    }
+    td{
+        font-size: 13px;
+        color: white;
+        text-align: center;
+    }
+    td.left{
+       width: 100px;
+       text-align: left;
+       padding-left: 20px;
+       padding-top: 5px;
+       padding-bottom: 5px;
+    }
+    td.right{
+         text-align: left;
+    }
+    span{
+        font-size: 10px;
+    }
+
+</style>
+
+
+
+<body class="conter">
+<div>
+    <div>
+     <table>
+        <tr>
+         <td class="left">温度<span>&nbsp(℃)</span></td>
+         <td class="right" id="tempu">0</td>
+        </tr>
+
+        <tr>
+         <td class="left">湿度<span>&nbsp(%)</span></td>
+         <td class="right" id="hum">0</td>
+          </tr>
+
+        <tr>
+         <td class="left">PM10<span>&nbsp(ug/m3)</span></td>
+         <td class="right" id="pm10">0</td>
+        </tr>
+
+        <tr>
+            <td class="left">CO2<span>&nbsp(ppm)</span></td>
+             <td class="right" id="co2">0</td>
+        </tr>
+
+        <tr>
+              <td class="left">甲醛<span>&nbsp(mg/m3)</span></td>
+              <td class="right" id="hcho">0</td>
+
+        </tr>
+
+        <tr>
+             <td class="left">TVOC<span>&nbsp(mg/m3)</span></td>
+             <td class="right" id="tvoc">0</td>
+
+        </tr>
+     </table>
+    </div>
+<script type="text/javascript">
+
+function changeValue(datavalue){
+      document.getElementById("tempu").innerHTML=datavalue[0];
+      document.getElementById("hum").innerHTML=datavalue[1];
+      document.getElementById("pm10").innerHTML=datavalue[2];
+      document.getElementById("co2").innerHTML=datavalue[3];
+      document.getElementById("hcho").innerHTML=datavalue[4];
+      document.getElementById("tvoc").innerHTML=datavalue[5];
+}
+</script>
+</div>
+
+</body>
+</html>

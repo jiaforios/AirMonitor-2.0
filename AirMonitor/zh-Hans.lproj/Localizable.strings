@@ -1,0 +1,63 @@
+/*
+ Localizable.string.strings
+ AirMonitor
+ 
+ Created by zengjia on 16/12/8.
+ Copyright © 2016年 zengjia. All rights reserved.
+ */
+
+
+"tab_realtime"="实时";
+"tab_history"="历史";
+"tab_weather"="天气";
+"tab_knowledge"="知识";
+"tab_more"="更多";
+"more_about"="联系商家";
+"more_set"="设置";
+"more_Feedback"="意见反馈";
+"appName"="新风检测系统";
+"more_Score"="去评分";
+"more_ChectNewVersion"="检测新版本";
+"knowledge_standard"="空气质量指数计算标准(中国)";
+"knowledge_pm2.5"="PM2.5是什么";
+"knowledge_pm2.5deal"="PM2.5的应对措施";
+"knowledge_heath"="生活小常识";
+
+"real_best"="优";
+"real_well"="良";
+"real_middl"="轻度污染";
+"real_medium"="中度污染";
+"real_serious"="重度污染";
+"real_baddly"="严重污染";
+"real_inside"="室内";
+"real_outside"="室外";
+
+"loading"                =     "正在加载数据";
+"temperature"            =     "温度";
+"hunmidity"              =     "湿度";
+"PM10"                   =     "PM10";
+"CO2"                    =     "CO2";
+"HCHO"                   =     "甲醛";
+"methanal"               =     "甲醛";
+"co2"                    =     "二氧化碳";
+"pm2"                    =     "PM2.5";
+"TVOC"                   =     "TVOC";
+"PM25"                   =     "PM2.5";
+"InsidePM2.5"            =     "室内 PM2.5";
+"OutsidePM2.5"           =     "室外 PM2.5";
+"outline"                    =     "室外曲线";
+"insideline"                 =     "室内曲线";
+"heath"                      =     "健康线";
+"dangous"                    =     "警戒线";
+
+"PM10_his"                   =     "PM10";
+"CO2_his"                    =     "二氧化碳";
+"HCHO_his"                   =     "甲醛";
+"PM25_his"                   =     "PM2.5";
+"Copyright"                  = "Copyright © 2016-2020 | 西安智尔森健康舒适家居";
+"more_net" ="产品详情";
+"inputDeviceId"="请输入设备号!";
+"chosePlace"="请选择您所在的区域!";
+"changeAount"="切换设备";
+"loginSuccess"="登录成功";
+"logOut"="退出登录";

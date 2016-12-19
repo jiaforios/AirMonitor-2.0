@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking
+END
+AFHTTPSessionManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFHTTPSessionManager.m
+END
+AFURLResponseSerialization.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFURLResponseSerialization.m
+END
+AFNetworking.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFNetworking.h
+END
+AFSecurityPolicy.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFSecurityPolicy.h
+END
+AFSecurityPolicy.m
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFSecurityPolicy.m
+END
+AFURLSessionManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFURLSessionManager.h
+END
+AFURLConnectionOperation.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFURLConnectionOperation.h
+END
+AFHTTPRequestOperationManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFHTTPRequestOperationManager.h
+END
+AFNetworkReachabilityManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h
+END
+AFURLSessionManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFURLSessionManager.m
+END
+AFURLConnectionOperation.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFURLConnectionOperation.m
+END
+AFHTTPRequestOperation.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFHTTPRequestOperation.h
+END
+AFHTTPRequestOperationManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFHTTPRequestOperationManager.m
+END
+AFURLRequestSerialization.h
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFURLRequestSerialization.h
+END
+AFNetworkReachabilityManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFNetworkReachabilityManager.m
+END
+AFURLRequestSerialization.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFURLRequestSerialization.m
+END
+AFHTTPSessionManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFHTTPSessionManager.h
+END
+AFHTTPRequestOperation.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFHTTPRequestOperation.m
+END
+AFURLResponseSerialization.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/IOSMobilePlatform/!svn/ver/8/ccs/ccs/ccs/Classes/3rdlib/AFNetworking/AFNetworking/AFURLResponseSerialization.h
+END

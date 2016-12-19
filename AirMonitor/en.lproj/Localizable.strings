@@ -1,0 +1,37 @@
+/*
+ Localizable.string.strings
+ AirMonitor
+ 
+ Created by zengjia on 16/12/8.
+ Copyright © 2016年 zengjia. All rights reserved.
+ */
+
+"loading"                =     "loading......";
+"temperature"            =     "Temperature";
+"hunmidity"              =     "Hunmidity";
+"PM10"                   =     "PM10";
+"CO2"                    =     "CO2";
+"HCHO"                   =     "HCHO";
+"TVOC"                   =     "TVOC";
+"InsidePM2.5"            =     "Inside PM2.5";
+"OutsidePM2.5"           =     "Outside PM2.5";
+
+"WeekHistoryGraphsOfHCHO(mg/m3)"       =     "Week History Graphs Of HCHO(mg/m3)";
+"WeekHistoryGraphsOfPM2.5(ug/m3)"      =     "Week History Graphs Of PM2.5(ug/m3)";
+"WeekHistoryGraphsOfPM10(ug/m3)"       =     "Week History Graphs Of PM10(ug/m3)";
+"WeekHistoryGraphsOfCO2(ppm)"          =     "Week History Graphs Of CO2(ppm)";
+
+"Copyright"                            =     "Copyright © 2016-2020 | 西安智尔森健康舒适家居";
+"login"                                =     "Login";
+"Logout"                               =     "Logout";
+"inside"                               =     "Inside:";
+
+"outline"                    =     "室外曲线";
+"insideline"                 =     "室内曲线";
+"heath"                      =     "健康线";
+"dangous"                    =     "警戒线";
+"updatefind"                 =    "Tips";
+"Ignored"                    =    "Cancel";
+"went update"                =    "Go Update";
+"New Version"                =    "Find New Version";
+
