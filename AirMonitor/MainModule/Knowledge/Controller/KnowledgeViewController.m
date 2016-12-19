@@ -8,9 +8,10 @@
 
 #import "KnowledgeViewController.h"
 #import "WebKitVC.h"
+#import <WebKit/WebKit.h>
 static NSString *cellId = @"knowledgecell";
 
-@interface KnowledgeViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface KnowledgeViewController ()<UITableViewDelegate,UITableViewDataSource,WKNavigationDelegate,WKScriptMessageHandler>
 @property(nonatomic,strong)UITableView *tabView;
 @property(nonatomic,strong)NSMutableArray *dataSource;
 
@@ -22,16 +23,70 @@ static NSString *cellId = @"knowledgecell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     NSArray *section1 = @[MZLocalizedString(@"knowledge_pm2.5"),MZLocalizedString(@"knowledge_pm2.5deal"),MZLocalizedString(@"knowledge_heath")];
-    
+
     NSArray *section2 = @[MZLocalizedString(@"knowledge_standard")];
     
     [self.dataSource addObject:section1];
     [self.dataSource addObject:section2];
-
+    
+    // 注册对应的植入名
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    config.userContentController = [[WKUserContentController alloc] init];
+    [config.userContentController addScriptMessageHandler:self name:@"AppTest"];
+    
+    WKWebView *wkweb = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
+    wkweb.navigationDelegate = self;
+    [wkweb loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.smart029.com/a/jishuzhichi/changjianwenti"]]];
+    wkweb.hidden = YES;
+    [self.view addSubview:wkweb];
+    
     [self.view addSubview:self.tabView];
 
-
 }
+
+// 接收植入返回结果
+- (void)userContentController:(WKUserContentController *)userContentController
+      didReceiveScriptMessage:(WKScriptMessage *)message {
+    if ([message.name isEqualToString:@"AppTest"]) {
+        // 打印所传过来的参数，只支持NSNumber, NSString, NSDate, NSArray,
+        // NSDictionary, and NSNull类型
+        NSLog(@"%@", message.body);
+        
+    }
+}
+
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
+{
+    NSLog(@"页面开始加载");
+    
+}
+
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+{
+    NSLog(@"页面加载结束");
+
+    // 植入传递内容脚本
+    [webView evaluateJavaScript:@"var arr = document.getElementsByClassName('childContent');\
+     var x = arr[0].innerHTML;window.webkit.messageHandlers.AppTest.postMessage({body: x});" completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
+         NSLog(@"js_oc error :%@",[error description]);
+        
+    }];
+    
+}
+
+- (void)octest
+{
+    NSLog(@"js 调用oc 方法");
+}
+
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error
+{
+    NSLog(@"页面加载失败");
+}
+
+
+
 - (UITableView *)tabView
 {
     if (_tabView == nil) {
