@@ -31,7 +31,7 @@
        padding-bottom: 5px;
     }
     td.right{
-         text-align: left;
+         text-align: center;
     }
     span{
         font-size: 10px;
@@ -45,6 +45,10 @@
 <div>
     <div>
      <table>
+     <tr >
+       <td style="text-align: center; font-size: 17px;" colspan ="2">实时数据</td>
+       <td></td>
+     </tr>
         <tr>
          <td class="left">温度<span>&nbsp(℃)</span></td>
          <td class="right" id="tempu">0</td>
@@ -65,17 +69,17 @@
              <td class="right" id="co2">0</td>
         </tr>
 
-        <tr>
-              <td class="left">甲醛<span>&nbsp(mg/m3)</span></td>
-              <td class="right" id="hcho">0</td>
+        <!-- <tr> -->
+              <!-- <td class="left">甲醛<span>&nbsp(mg/m3)</span></td> -->
+              <!-- <td class="right" id="hcho">0</td> -->
 
-        </tr>
+        <!-- </tr> -->
 
-        <tr>
-             <td class="left">TVOC<span>&nbsp(mg/m3)</span></td>
+        <!-- <tr> -->
+           <!--   <td class="left">TVOC<span>&nbsp(mg/m3)</span></td>
              <td class="right" id="tvoc">0</td>
-
-        </tr>
+ -->
+        <!-- </tr> -->
      </table>
     </div>
 <script type="text/javascript">
@@ -85,8 +89,8 @@ function changeValue(datavalue){
       document.getElementById("hum").innerHTML=datavalue[1];
       document.getElementById("pm10").innerHTML=datavalue[2];
       document.getElementById("co2").innerHTML=datavalue[3];
-      document.getElementById("hcho").innerHTML=datavalue[4];
-      document.getElementById("tvoc").innerHTML=datavalue[5];
+      // document.getElementById("hcho").innerHTML=datavalue[4];
+      // document.getElementById("tvoc").innerHTML=datavalue[5];
 }
 </script>
 </div>

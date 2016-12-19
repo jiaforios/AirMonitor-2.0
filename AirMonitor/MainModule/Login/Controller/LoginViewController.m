@@ -62,6 +62,7 @@
     [HUDManger shareHudManger].labelTextStr(@"请稍等...");
     [[NSUserDefaults standardUserDefaults] setObject:@"50026" forKey:@"account"];
     [[NSUserDefaults standardUserDefaults] setObject:@"titanOne" forKey:@"tiYan"];
+    [[NSUserDefaults standardUserDefaults] setObject:_palceBtn.titleLabel.text forKey:@"place"];
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         MZTabbarController *tab = [[MZTabbarController alloc] init];
@@ -79,6 +80,8 @@
     [HUDManger shareHudManger].labelTextStr(@"请稍等...");
     [[NSUserDefaults standardUserDefaults] setObject:_devicelLabel.text forKey:@"account"];
     [[NSUserDefaults standardUserDefaults] setObject:@"titannil" forKey:@"tiYan"];
+    [[NSUserDefaults standardUserDefaults] setObject:_palceBtn.titleLabel.text forKey:@"place"];
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         MZTabbarController *tab = [[MZTabbarController alloc] init];
         [self presentViewController:tab animated:YES completion:nil];

@@ -19,6 +19,9 @@ NSString *currentViewPalce;
 
 
 @interface HistoryViewController ()<YBPopupMenuDelegate>
+{
+    UIButton *shareBtn;
+}
 @property(nonatomic,strong)NSMutableArray *paramArr;
 @property(nonatomic,strong)NSMutableArray <RealDataModel *>*outFactorArr;
 @property(nonatomic,strong)NSMutableArray <RealDataModel *>*inFactorArr;
@@ -31,6 +34,8 @@ NSString *currentViewPalce;
 @property(nonatomic,copy)NSString *selectFactor; // 选中的空气因素
 @property(nonatomic,assign)NSInteger topValue; // y轴最大值 默认值是PM2.5： 500
 @property (nonatomic, strong) UIImageView *screenShotsImageV;//截屏
+@property(nonatomic,strong)NSTimer *dataTimers;
+
 
 @end
 
@@ -54,9 +59,11 @@ NSString *currentViewPalce;
     if (_paramArr == nil) {
         _paramArr = [NSMutableArray new];
         [_paramArr addObject:MZLocalizedString(@"PM25_his")];
-        [_paramArr addObject:MZLocalizedString(@"PM10_his")];
+//        [_paramArr addObject:MZLocalizedString(@"PM10_his")];
         [_paramArr addObject:MZLocalizedString(@"CO2_his")];
-        [_paramArr addObject:MZLocalizedString(@"HCHO_his")];
+//        [_paramArr addObject:MZLocalizedString(@"temperature")];
+
+//        [_paramArr addObject:MZLocalizedString(@"HCHO_his")];
     }
     
     return _paramArr;
@@ -174,7 +181,7 @@ NSString *currentViewPalce;
     
     UIImage *image = [[ScreenShotsManager shareManager] makeScreenShots:self.view];
     _screenShotsImageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, MZ_WIDTH, MZ_HEIGHT)];
-    UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+     shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     shareBtn.frame = CGRectMake(MZ_WIDTH-40-20, 200, 50, 50);
     [shareBtn addTarget:self action:@selector(shareImageAction) forControlEvents:UIControlEventTouchUpInside];
     _screenShotsImageV.image = image;
@@ -200,15 +207,18 @@ NSString *currentViewPalce;
     [self.view addSubview:shareBtn];
     
     
-    [NSTimer scheduledTimerWithTimeInterval:5 repeats:NO block:^(NSTimer * _Nonnull timer) {
-        
-        [shareBtn removeFromSuperview];
-        [timer invalidate];
-        
-    }];
+   _dataTimers = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(missView) userInfo:nil repeats:NO];
     
     
 }
+
+- (void)missView
+{
+    [shareBtn removeFromSuperview];
+    [_dataTimers invalidate];
+
+}
+
 // 分享按钮动画
 - (void)shakeAction:(UIButton *)sender
 {
@@ -313,10 +323,6 @@ NSString *currentViewPalce;
 }
 
 
-
-
-
-
 - (void)showSevenHistory:(UIButton *)sender
 {
     if (sender.selected) {
@@ -385,19 +391,26 @@ NSString *currentViewPalce;
                 break;
             case 1:
             {
-                _selectFactor = @"pm10";
-                _topValue = 500;
-
-            }
-                break;
-            case 2:
-            {
                 _selectFactor = @"co2";
                 _topValue = 2000;
 
-
             }
                 break;
+//            case 2:
+//            {
+//                _selectFactor = @"pm10";
+//                _topValue = 500;
+//
+//            }
+//                break;
+//                
+//               case 2:
+//            {
+//                _selectFactor = @"temperature";
+//                _topValue = 100;
+//            }
+//                break;
+                
             case 3:
             {
                 _selectFactor = @"methanal";

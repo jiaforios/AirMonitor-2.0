@@ -23,6 +23,9 @@
 @interface RealTimeViewController ()<UIScrollViewDelegate>
 {
     MAPaoMaView *paoma;
+    UIButton * shareBtn;
+    UIView *filpView;
+    WeatherView *wview;
 }
 @property(nonatomic,strong)Real_history_View *inView;
 @property(nonatomic,strong)Real_history_View *outView;
@@ -33,6 +36,8 @@
 @property (nonatomic, assign) CGFloat screenBrightness;//屏幕亮度
 @property(nonatomic,strong)CalendView *calV;
 @property(nonatomic,strong)NSDictionary *calDic;
+@property(nonatomic,strong)NSTimer *missTimer; // 自动消失的timer
+@property(nonatomic,strong)NSTimer *flipTimer;
 
 
 @end
@@ -56,6 +61,7 @@
         [LCLoadingHUD hideInView:self.view];
     });
     
+    [self testjspatch]; //  测试热更新
     
 }
 
@@ -84,6 +90,7 @@
     [_scrollview addSubview:_inView];
     [_scrollview addSubview:_outView];
     
+    
     [self.view addSubview:_scrollview];
     _seg = [[UISegmentedControl alloc] initWithItems:@[MZLocalizedString(@"real_inside"),MZLocalizedString(@"real_outside")]];
     
@@ -95,7 +102,6 @@
     [_seg addTarget:self action:@selector(changeSegment:) forControlEvents:UIControlEventValueChanged];
     self.navigationItem.titleView = _seg;
     
-
 }
 
 
@@ -110,9 +116,9 @@
         _calDic = allValue;
         NSLog(@"日历信息请求成功allvalue = %@",allValue);
         [_calV dealWithCalData:allValue];
-         paoma = [[MAPaoMaView alloc]initWithFrame:CGRectMake((MZ_WIDTH-200)/2.0, 0, 200, 30) withTitle:dataValue];
-        [paoma start];
-        [self.view addSubview:paoma];
+//         paoma = [[MAPaoMaView alloc]initWithFrame:CGRectMake((MZ_WIDTH-200)/2.0, 0, 200, 30) withTitle:dataValue];
+//        [paoma start];
+//        [self.view addSubview:paoma];
         dispatch_group_leave(_group);
 
     }];
@@ -120,34 +126,36 @@
     
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)testjspatch
 {
-    [super viewWillDisappear:animated];
-    [paoma stop];
-    NSLog(@"停止跑马灯");
+    NSLog(@"123333");
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [paoma start];
-    NSLog(@"开启跑马灯");
-
-}
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    [paoma stop];
+//}
+//
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    [paoma start];
+//
+//}
 
 
 - (void)flipWeatherView
 {
     
-    UIView *filpView = [[UIView alloc] initWithFrame:CGRectMake(MZ_WIDTH-177, MZ_HEIGHT-64-49-188, 170, 188)];
+    filpView = [[UIView alloc] initWithFrame:CGRectMake(MZ_WIDTH-177, MZ_HEIGHT-64-49-188, 170, 188)];
     filpView.layer.cornerRadius = 5;
     filpView.backgroundColor = [UIColor clearColor];
     [LCLoadingHUD showLoading:@"" inView:self.view];
     dispatch_group_enter(_group);
     
 
-    WeatherView *wview = [[WeatherView alloc] initWithFrame:CGRectMake(0, 0, 170, 188) andresultBlock:^{
-        NSLog(@"天气信息请求成功");
+    wview = [[WeatherView alloc] initWithFrame:CGRectMake(0, 0, 170, 188) andresultBlock:^{
         dispatch_group_leave(_group);
         
     }];
@@ -166,31 +174,34 @@
     
     // 设置天气小界面自动翻转
     
-     _calV = [[CalendView alloc] initWithFrame:CGRectMake(0, -10, 170, 195)];
+     _calV = [[CalendView alloc] initWithFrame:CGRectMake(0, 20, 170, 150)];
     
-    [NSTimer scheduledTimerWithTimeInterval:10 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        static BOOL filp = NO;
-        filp = !filp;
-        if (filp) {
-            [UIView transitionWithView:filpView duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
-                
-                [wview removeFromSuperview];
-                [filpView addSubview:_calV];
-                
-            } completion:nil];
-        }else
-        {
-            [UIView transitionWithView:filpView duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
-                [_calV removeFromSuperview];
-                [filpView addSubview:wview];
-            } completion:nil];
-            
-        }
-        
-    }];
+    
+    _flipTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(filpAction) userInfo:nil repeats:YES];
 
 }
 
+- (void)filpAction
+{
+    static BOOL filp = NO;
+    filp = !filp;
+    if (filp) {
+        [UIView transitionWithView:filpView duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+            
+            [wview removeFromSuperview];
+            [filpView addSubview:_calV];
+            
+        } completion:nil];
+    }else
+    {
+        [UIView transitionWithView:filpView duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+            [_calV removeFromSuperview];
+            [filpView addSubview:wview];
+        } completion:nil];
+        
+    }
+
+}
 
 -(void)changeSegment:(UISegmentedControl *)seg
 {
@@ -288,7 +299,7 @@
     
     UIImage *image = [[ScreenShotsManager shareManager] makeScreenShots:self.view];
     _screenShotsImageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, MZ_WIDTH, MZ_HEIGHT)];
-   UIButton * shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     shareBtn.frame = CGRectMake(MZ_WIDTH-40-20, 200, 50, 50);
     [shareBtn addTarget:self action:@selector(shareImageAction) forControlEvents:UIControlEventTouchUpInside];
     _screenShotsImageV.image = image;
@@ -312,15 +323,21 @@
     
     [self.view addSubview:shareBtn];
     
-    
-    [NSTimer scheduledTimerWithTimeInterval:5 repeats:NO block:^(NSTimer * _Nonnull timer) {
-        
-        [shareBtn removeFromSuperview];
-        [timer invalidate];
-        
-    }];
+   _missTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(missView) userInfo:nil repeats:YES];
     
     
+}
+
+- (void)dealloc
+{
+    [_flipTimer invalidate];
+}
+
+- (void)missView
+{
+    [shareBtn removeFromSuperview];
+    [_missTimer invalidate];
+
 }
 
 - (void)didReceiveMemoryWarning {

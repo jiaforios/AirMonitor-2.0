@@ -43,7 +43,7 @@ static NSString *cellId = @"Morecell";
         _tabView.delegate = self;
         _tabView.dataSource = self;
         _tabView.backgroundColor = [UIColor clearColor];
-        UILabel *footline = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, MZ_WIDTH-20, 1)];
+        UILabel *footline = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, MZ_WIDTH-20, 1)];
         footline.backgroundColor = RGBCOLOR(61, 60, 68);
     
         UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MZ_WIDTH, 200)];

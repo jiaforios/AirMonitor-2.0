@@ -10,6 +10,7 @@
 #import "MZTabbarController.h"
 #import <UMMobClick/MobClick.h>
 #import "LoginViewController.h"
+#import <JSPatchPlatform/JSPatch.h>
 #define UMENG_APPKEY @"574936c0e0f55a83c1002c73" //while&2015 outlook.com
 
 @interface AppDelegate ()
@@ -23,7 +24,11 @@
     
     [self umengTrack];
     
-
+    [JSPatch startWithAppKey:@"8cb0eec5166c6a22"];
+    [JSPatch sync];
+//    [JSPatch testScriptInBundle]; // 测试时将main.js放入本地
+    
+    
   NSString *tiyan =  [[NSUserDefaults standardUserDefaults] objectForKey:@"tiYan"];
     
     NSString *account =  [[NSUserDefaults standardUserDefaults] objectForKey:@"account"];
@@ -36,8 +41,6 @@
         LoginViewController *login = [[LoginViewController alloc] init];
         self.window.rootViewController = login;
     }
-    
-    
     
     
     // Override point for customization after application launch.

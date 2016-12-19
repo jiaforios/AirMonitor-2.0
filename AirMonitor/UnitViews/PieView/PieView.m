@@ -39,10 +39,10 @@
         [self configPiewView];
         [self configDataWith:0];
         
-        [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            
-            [self configDataWith:arc4random_uniform(50)];
-        }];
+//        [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+//            
+//            [self configDataWith:arc4random_uniform(50)];
+//        }];
     }
     
     return self;

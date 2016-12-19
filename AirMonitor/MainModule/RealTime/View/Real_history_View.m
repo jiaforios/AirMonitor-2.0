@@ -16,10 +16,14 @@
 
 @interface Real_history_View ()
 
-@property(nonatomic,strong)UILabel *dataLabel;
-@property(nonatomic,strong)UILabel *rankLabel;
-@property(nonatomic,strong)UILabel *dataTime;
+@property(nonatomic,strong)UILabel *dataLabel; // 显示实时数据
+@property(nonatomic,strong)UILabel *rankLabel; //从显示优良
+@property(nonatomic,strong)UILabel *dataTime; // 显示PM2.5
 @property(nonatomic,strong)WKWebView *wkview;
+@property(nonatomic,strong)NSTimer *dataTimer; // 获取数据的timer
+@property(nonatomic,strong)NSString *deviceId;
+@property(nonatomic,strong)UILabel *place;
+
 @end
 
 @implementation Real_history_View
@@ -27,12 +31,20 @@
 -(instancetype)initWithFrame:(CGRect)frame withId:(NSString *)deviceId
 {
     if (self = [super initWithFrame:frame]) {
-        
+        _deviceId = deviceId;
         [self addSubview:self.dataLabel];
         [self addSubview:self.rankLabel];
         [self addSubview:self.wkview];
         [self addSubview:self.dataTime];
+        [self addSubview:self.place];
         [self acquireDataWithDeviceId:deviceId];
+        [self.place mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.centerX.equalTo(self);
+            make.top.equalTo(self).with.offset(15);
+            make.width.mas_equalTo(200);
+            make.height.mas_equalTo(20);
+        }];
         [self.dataLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.centerX.equalTo(self);
@@ -63,7 +75,7 @@
            
             make.bottom.equalTo(self).with.offset(-49);
             make.left.equalTo(self).with.offset(0);
-            make.right.equalTo(self).with.offset(0);
+            make.width.mas_equalTo(MZ_WIDTH/2.0);
             make.height.mas_equalTo(150+49);
 
         }];
@@ -75,17 +87,38 @@
 
 -(void)acquireDataWithDeviceId:(NSString *)deviceId
 {
+   _dataTimer =  [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timeAcquireData) userInfo:nil repeats:YES];
     
-    [NSTimer scheduledTimerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer)
-    {
-        [[NetHelper shareNetManger] getAirInformationWithUrl:kBaseUrl andDeviceId:deviceId andBackBlock:^(id value) {
-            RealDataModel *model = [RealDataModel mj_objectWithKeyValues:value];
-            [self changeDataValue:model];
-        }];
-        
-    }];
-    
+}
 
+- (void)timeAcquireData
+{
+    [[NetHelper shareNetManger] getAirInformationWithUrl:kBaseUrl andDeviceId:_deviceId andBackBlock:^(id value) {
+        RealDataModel *model = [RealDataModel mj_objectWithKeyValues:value];
+        [self changeDataValue:model];
+    }];
+}
+
+- (UILabel *)place
+{
+    if (_place == nil) {
+        _place = [[UILabel alloc] init];
+        _place.textAlignment = NSTextAlignmentCenter;
+        _place.textColor = [UIColor whiteColor];
+        _place.font = font_17;
+        if (![_deviceId isEqualToString:OUTDEV]) {
+            _place.text = @"办公区";
+        }else
+        {
+            
+            NSString *location = [[NSUserDefaults standardUserDefaults] objectForKey:@"place"];
+            if (location) {
+                _place.text = [@"西安市 " stringByAppendingString:location];
+            }
+        }
+    }
+    
+    return _place;
 }
 
 -(WKWebView *)wkview
@@ -173,6 +206,13 @@
     return jsStr;
     
 }
+
+- (void)dealloc
+{
+    [_dataTimer invalidate];
+    _dataTimer = nil;
+}
+
 
 @end
 

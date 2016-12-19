@@ -72,7 +72,7 @@
                         <constraint firstAttribute="width" constant="93" id="lUO-zV-Nz5"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="详细天气">
+                    <state key="normal">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>

@@ -101,6 +101,8 @@
 		756FD0FF1DFE98EA0043E91E /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 756FD0F21DFE98EA0043E91E /* NSObject+MJKeyValue.m */; };
 		756FD1001DFE98EA0043E91E /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 756FD0F41DFE98EA0043E91E /* NSObject+MJProperty.m */; };
 		756FD1011DFE98EA0043E91E /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 756FD0F61DFE98EA0043E91E /* NSString+MJExtension.m */; };
+		7587F5931E07C006005C4E76 /* JSPatchPlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7587F5921E07C006005C4E76 /* JSPatchPlatform.framework */; };
+		7587F5951E07C03D005C4E76 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7587F5941E07C03D005C4E76 /* JavaScriptCore.framework */; };
 		759898441E028DFF00AD833D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 759898431E028DFF00AD833D /* SystemConfiguration.framework */; };
 		759898461E028E0800AD833D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 759898451E028E0800AD833D /* CoreTelephony.framework */; };
 		759898481E028E1200AD833D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 759898471E028E1200AD833D /* libsqlite3.tbd */; };
@@ -359,6 +361,8 @@
 		756FD0F41DFE98EA0043E91E /* NSObject+MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJProperty.m"; sourceTree = "<group>"; };
 		756FD0F51DFE98EA0043E91E /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
 		756FD0F61DFE98EA0043E91E /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
+		7587F5921E07C006005C4E76 /* JSPatchPlatform.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSPatchPlatform.framework; sourceTree = "<group>"; };
+		7587F5941E07C03D005C4E76 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		759898431E028DFF00AD833D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		759898451E028E0800AD833D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		759898471E028E1200AD833D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -389,9 +393,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7587F5951E07C03D005C4E76 /* JavaScriptCore.framework in Frameworks */,
 				7598984E1E028E4D00AD833D /* ImageIO.framework in Frameworks */,
 				759898441E028DFF00AD833D /* SystemConfiguration.framework in Frameworks */,
 				7598984C1E028E2400AD833D /* libz.tbd in Frameworks */,
+				7587F5931E07C006005C4E76 /* JSPatchPlatform.framework in Frameworks */,
 				75FE0F151E052CD700E9AC61 /* UMMobClick.framework in Frameworks */,
 				7598984A1E028E1E00AD833D /* libc++.tbd in Frameworks */,
 				759898481E028E1200AD833D /* libsqlite3.tbd in Frameworks */,
@@ -776,6 +782,7 @@
 		382951751DF9A478008D8CF6 /* Venders */ = {
 			isa = PBXGroup;
 			children = (
+				7587F5921E07C006005C4E76 /* JSPatchPlatform.framework */,
 				75FE0F1C1E05326F00E9AC61 /* UIImage+ImageEffects.h */,
 				75FE0F1D1E05326F00E9AC61 /* UIImage+ImageEffects.m */,
 				75FE0F141E052CD700E9AC61 /* UMMobClick.framework */,
@@ -1004,6 +1011,7 @@
 		759898421E028DFE00AD833D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7587F5941E07C03D005C4E76 /* JavaScriptCore.framework */,
 				7598984D1E028E4D00AD833D /* ImageIO.framework */,
 				7598984B1E028E2400AD833D /* libz.tbd */,
 				759898491E028E1E00AD833D /* libc++.tbd */,
@@ -1493,8 +1501,8 @@
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smart029.AirMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "641229f9-4b9f-471f-833d-4699f8a30e4f";
-				PROVISIONING_PROFILE_SPECIFIER = AirMonitor_dev;
+				PROVISIONING_PROFILE = "db2316ba-e2d9-4e52-b3b1-c275427c9c84";
+				PROVISIONING_PROFILE_SPECIFIER = chlma_dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "AirMonitor/AirMonitor-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1509,7 +1517,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 75V6ZM52RS;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1537,8 +1545,8 @@
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smart029.AirMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "55ae17a3-6a27-4391-9c94-7bc77266b41c";
-				PROVISIONING_PROFILE_SPECIFIER = AirMonitor_AppStore;
+				PROVISIONING_PROFILE = "db2316ba-e2d9-4e52-b3b1-c275427c9c84";
+				PROVISIONING_PROFILE_SPECIFIER = chlma_dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "AirMonitor/AirMonitor-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
