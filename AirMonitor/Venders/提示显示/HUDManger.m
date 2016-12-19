@@ -28,6 +28,7 @@ static HUDManger *manger = nil;
         manger = [[self alloc] init];
         manger.hud = [[MBProgressHUD alloc] initWithFrame:[UIScreen mainScreen].bounds];
         manger.hud.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        manger.hud.label.textColor = [UIColor whiteColor];
         manger.hwindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         manger.hwindow.windowLevel = UIWindowLevelAlert;
         manger.hud.bezelView.backgroundColor = [black_color colorWithAlphaComponent:0.5];

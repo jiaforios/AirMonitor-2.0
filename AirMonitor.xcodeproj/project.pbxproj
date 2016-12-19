@@ -66,6 +66,7 @@
 		382951991DF9A478008D8CF6 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3829518B1DF9A478008D8CF6 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		3829519A1DF9A478008D8CF6 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3829518D1DF9A478008D8CF6 /* View+MASAdditions.m */; };
 		3829519B1DF9A478008D8CF6 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 382951901DF9A478008D8CF6 /* ViewController+MASAdditions.m */; };
+		383677981E08158200EBC376 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383677971E08158200EBC376 /* QuestionViewController.m */; };
 		7506E3861DF962D0009D1E19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7506E3851DF962D0009D1E19 /* main.m */; };
 		7506E39F1DF962D0009D1E19 /* AirMonitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7506E39E1DF962D0009D1E19 /* AirMonitorTests.m */; };
 		7506E3AA1DF962D0009D1E19 /* AirMonitorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7506E3A91DF962D0009D1E19 /* AirMonitorUITests.m */; };
@@ -286,6 +287,8 @@
 		3829518E1DF9A478008D8CF6 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		3829518F1DF9A478008D8CF6 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		382951901DF9A478008D8CF6 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		383677961E08158200EBC376 /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionViewController.h; sourceTree = "<group>"; };
+		383677971E08158200EBC376 /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionViewController.m; sourceTree = "<group>"; };
 		7506E3811DF962D0009D1E19 /* AirMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7506E3851DF962D0009D1E19 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7506E3951DF962D0009D1E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -500,6 +503,8 @@
 			children = (
 				36BA95701E06AB3900E9AD56 /* KnowledgeViewController.h */,
 				36BA95711E06AB3900E9AD56 /* KnowledgeViewController.m */,
+				383677961E08158200EBC376 /* QuestionViewController.h */,
+				383677971E08158200EBC376 /* QuestionViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1306,6 +1311,7 @@
 				752A01071DFFA7F2000CE318 /* WeatherView.m in Sources */,
 				36BA95AC1E06AC2F00E9AD56 /* NetHelper.m in Sources */,
 				756FD0D11DFE90FB0043E91E /* UIButton+AFNetworking.m in Sources */,
+				383677981E08158200EBC376 /* QuestionViewController.m in Sources */,
 				382951981DF9A478008D8CF6 /* NSArray+MASAdditions.m in Sources */,
 				75FE0F1E1E05326F00E9AC61 /* UIImage+ImageEffects.m in Sources */,
 				75DA5CA91DFAB83500CC6C41 /* chart.swift in Sources */,
@@ -1501,8 +1507,8 @@
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smart029.AirMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "db2316ba-e2d9-4e52-b3b1-c275427c9c84";
-				PROVISIONING_PROFILE_SPECIFIER = chlma_dev;
+				PROVISIONING_PROFILE = "641229f9-4b9f-471f-833d-4699f8a30e4f";
+				PROVISIONING_PROFILE_SPECIFIER = AirMonitor_dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "AirMonitor/AirMonitor-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1517,7 +1523,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 75V6ZM52RS;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1545,8 +1551,8 @@
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smart029.AirMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "db2316ba-e2d9-4e52-b3b1-c275427c9c84";
-				PROVISIONING_PROFILE_SPECIFIER = chlma_dev;
+				PROVISIONING_PROFILE = "55ae17a3-6a27-4391-9c94-7bc77266b41c";
+				PROVISIONING_PROFILE_SPECIFIER = AirMonitor_AppStore;
 				SWIFT_OBJC_BRIDGING_HEADER = "AirMonitor/AirMonitor-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -8,12 +8,16 @@
 
 #import "KnowledgeViewController.h"
 #import "WebKitVC.h"
+#import "QuestionViewController.h"
+#import "HUDManger.h"
 #import <WebKit/WebKit.h>
 static NSString *cellId = @"knowledgecell";
 
 @interface KnowledgeViewController ()<UITableViewDelegate,UITableViewDataSource,WKNavigationDelegate,WKScriptMessageHandler>
 @property(nonatomic,strong)UITableView *tabView;
 @property(nonatomic,strong)NSMutableArray *dataSource;
+@property(nonatomic,copy)NSString *allTitles;
+@property(nonatomic,copy)NSString *allContents;
 
 @end
 
@@ -22,17 +26,19 @@ static NSString *cellId = @"knowledgecell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSArray *section1 = @[MZLocalizedString(@"knowledge_pm2.5"),MZLocalizedString(@"knowledge_pm2.5deal"),MZLocalizedString(@"knowledge_heath")];
+    NSArray *section1 = @[MZLocalizedString(@"knowledge_pm2.5"),MZLocalizedString(@"knowledge_pm2.5deal"),MZLocalizedString(@"knowledge_heath"),MZLocalizedString(@"knowledge_standard")];
 
-    NSArray *section2 = @[MZLocalizedString(@"knowledge_standard")];
+//    NSArray *section2 = @[MZLocalizedString(@"knowledge_standard")];
     
     [self.dataSource addObject:section1];
-    [self.dataSource addObject:section2];
+//    [self.dataSource addObject:section2];
     
     // 注册对应的植入名
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     config.userContentController = [[WKUserContentController alloc] init];
     [config.userContentController addScriptMessageHandler:self name:@"AppTest"];
+    [config.userContentController addScriptMessageHandler:self name:@"AppTestcontent"];
+
     
     WKWebView *wkweb = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
     wkweb.navigationDelegate = self;
@@ -50,28 +56,71 @@ static NSString *cellId = @"knowledgecell";
     if ([message.name isEqualToString:@"AppTest"]) {
         // 打印所传过来的参数，只支持NSNumber, NSString, NSDate, NSArray,
         // NSDictionary, and NSNull类型
-        NSLog(@"%@", message.body);
+        NSDictionary *dic = message.body;
+        self.allTitles = dic[@"body"];
+    }
+    
+    if ([message.name isEqualToString:@"AppTestcontent"]) {
+        NSDictionary *dic = message.body;
+        self.allContents = dic[@"body"];
+    }
+    if (self.allContents && self.allTitles) {
         
+        
+        NSArray *titleArr = [self.allTitles componentsSeparatedByString:@"==question=="];
+        NSMutableArray *allArr = [titleArr mutableCopy];
+        
+        [titleArr enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if (obj.length == 0) {
+                [allArr removeObject:obj];
+            }
+        }];
+        
+        [self.dataSource addObject:allArr];
+        
+        [self.tabView reloadData];
     }
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
 {
     NSLog(@"页面开始加载");
-    
+    [HUDManger shareHudManger].showAnimate(YES,20);
+    [HUDManger shareHudManger].labelTextStr(@"请稍等...");
 }
 
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
     NSLog(@"页面加载结束");
+    [HUDManger shareHudManger].showAnimate(NO,0);
 
     // 植入传递内容脚本
-    [webView evaluateJavaScript:@"var arr = document.getElementsByClassName('childContent');\
-     var x = arr[0].innerHTML;window.webkit.messageHandlers.AppTest.postMessage({body: x});" completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
+    [webView evaluateJavaScript:@"var arr = document.getElementsByClassName('titleForiOSUse');\
+     var alldata = '';\
+     for (var i = 0; i<arr.length; i++)\
+     {\
+         var x = arr[i];\
+         alldata = alldata + x.innerHTML +'==question==';\
+     };\
+     window.webkit.messageHandlers.AppTest.postMessage({body: alldata});" completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
          NSLog(@"js_oc error :%@",[error description]);
         
     }];
+    
+    
+    [webView evaluateJavaScript:@"var arr = document.getElementsByClassName('contentForiOSUse');\
+     var alldata = '';\
+     for (var i = 0; i<arr.length; i++)\
+     {\
+     var x = arr[i];\
+     alldata = alldata + x.innerHTML +'==question==';\
+     };\
+     window.webkit.messageHandlers.AppTestcontent.postMessage({body: alldata});" completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
+         NSLog(@"js_oc error :%@",[error description]);
+         
+     }];
     
 }
 
@@ -90,7 +139,7 @@ static NSString *cellId = @"knowledgecell";
 - (UITableView *)tabView
 {
     if (_tabView == nil) {
-        _tabView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        _tabView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MZ_WIDTH, MZ_HEIGHT-49) style:UITableViewStyleGrouped];
         _tabView.delegate = self;
         _tabView.dataSource = self;
         _tabView.backgroundColor = [UIColor clearColor];
@@ -155,12 +204,29 @@ static NSString *cellId = @"knowledgecell";
         if (indexPath.row == 2) {
             wvc.urlPath = @"health";
         }
-    }
-    if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
+        if (indexPath.row == 3) {
             wvc.urlPath = @"AQI";
         }
     }
+    
+    if (indexPath.section == 1) {
+        
+        QuestionViewController *ques = [[QuestionViewController alloc] init];
+        NSArray *contentArr = [self.allContents componentsSeparatedByString:@"==question=="];
+        NSMutableArray *allArr = [contentArr mutableCopy];
+        
+        [contentArr enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.length == 0) {
+                [allArr removeObject:obj];
+            }
+        }];
+
+        ques.content = contentArr[indexPath.row];
+        [self.navigationController pushViewController:ques animated:YES];
+        return;
+    }
+    
+    
     [self.navigationController pushViewController:wvc animated:YES];
 }
 

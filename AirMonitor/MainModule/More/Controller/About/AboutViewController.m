@@ -122,7 +122,7 @@
 {
     if (_phoneBtn == nil) {
         _phoneBtn = [[UIButton alloc] init];
-        [_phoneBtn setTitle:MZLocalizedString(@"电话：18092289782") forState:UIControlStateNormal];
+        [_phoneBtn setTitle:MZLocalizedString(@"电话：029-89527321") forState:UIControlStateNormal];
         _phoneBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         _phoneBtn.titleLabel.font = font_20;
         [_phoneBtn setTitleColor:white_color forState:UIControlStateNormal];
