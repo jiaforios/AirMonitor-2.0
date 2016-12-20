@@ -30,7 +30,7 @@ static NSString *cellId = @"knowledgecell";
 
 //    NSArray *section2 = @[MZLocalizedString(@"knowledge_standard")];
     
-    [self.dataSource addObject:section1];
+//    [self.dataSource addObject:section1];
 //    [self.dataSource addObject:section2];
     
     // 注册对应的植入名
@@ -190,26 +190,26 @@ static NSString *cellId = @"knowledgecell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    WebKitVC *wvc = [[WebKitVC alloc] init];
-    wvc.urlTitle = cell.textLabel.text;
+//    WebKitVC *wvc = [[WebKitVC alloc] init];
+//    wvc.urlTitle = cell.textLabel.text;
+//    if (indexPath.section == 0) {
+//        if (indexPath.row == 0) {
+//            wvc.urlPath = @"pm2_5";
+//        }
+//        if (indexPath.row == 1) {
+//            wvc.urlPath = @"pm25deal";
+//        }
+//        if (indexPath.row == 2) {
+//            wvc.urlPath = @"health";
+//        }
+//        if (indexPath.row == 3) {
+//            wvc.urlPath = @"AQI";
+//        }
+//    }
+    
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            wvc.urlPath = @"pm2_5";
-        }
-        if (indexPath.row == 1) {
-            wvc.urlPath = @"pm25deal";
-        }
-        if (indexPath.row == 2) {
-            wvc.urlPath = @"health";
-        }
-        if (indexPath.row == 3) {
-            wvc.urlPath = @"AQI";
-        }
-    }
-    
-    if (indexPath.section == 1) {
         
         QuestionViewController *ques = [[QuestionViewController alloc] init];
         NSArray *contentArr = [self.allContents componentsSeparatedByString:@"==question=="];
@@ -227,7 +227,7 @@ static NSString *cellId = @"knowledgecell";
     }
     
     
-    [self.navigationController pushViewController:wvc animated:YES];
+//    [self.navigationController pushViewController:wvc animated:YES];
 }
 
 
